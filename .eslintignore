@@ -1,0 +1,4 @@
+public/dist/*
+server/views/*
+built/
+dist/

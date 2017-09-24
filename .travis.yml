@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - "node"
+
+services:
+  - postgresql
+
+cache:
+  directories:
+    - "node_modules"
+
+env:
+  - CLIENT_ID="DEFAULT CLIENT ID" CLIENT_SECRET="DEFAULT CLIENT SECRET" CALLBACK_URL="DEFAULT CLIENT URL" TRAVIS=true
+
+before_install:
+  - psql -c 'create database thesis;' -U postgres
+  - npm install -g grunt-cli
+
+before_script:
+  - webpack
+
+script:
+  - "npm test"
