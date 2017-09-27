@@ -70,9 +70,9 @@ const serverConfig = {
     './server/index.js',
   ],
   output: {
-    path: __dirname + '/built',
+    path: __dirname + '/dist',
     filename: './server.js',
-    publicPath: 'built/',
+    publicPath: 'dist/',
   },
   module: {
     loaders: [

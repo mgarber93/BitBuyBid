@@ -8,9 +8,9 @@
     "url": "git://github.com/FrequentSteepers/BitBuyz.git"
   },
   "scripts": {
-    "start": "node built/server.js ",
-    "build": "babel server/ -d dist",
-    "serve": "webpack --watch | nodemon built/server.js --exec babel-node",
+    "start": "node dist/server.js ",
+    "build": "webpack --exec babel-node",
+    "serve": "webpack --watch | nodemon dist/server.js --exec babel-node",
     "webdev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "testFront": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "testBack": "NODE_ENV=test grunt test",
