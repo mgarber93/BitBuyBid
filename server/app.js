@@ -1,18 +1,5 @@
 import express from 'express';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { Provider } from 'react-redux';
-import configureStore from '../src/store/index.js';
-import renderFullHTMLPage from '../renderFullHTMLPage';
-import App from '../src/views/app.jsx';
 import path from 'path';
-
-import StaticRouter from 'react-router-dom/StaticRouter';
-
-import { matchRoutes, renderRoutes } from 'react-router-config';
-
-import routes from '../src/routes.js';
-import reducers from '../src/store/modules';
 
 // routes/controllers
 import {
