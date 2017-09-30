@@ -71,8 +71,6 @@ router.get('/', (req, res) => {
     });
 });
 
-export default router;
-
 const initializeStore = (req, res) => {
   const app = {user: req.isAuthenticated() ? req.user : null, };
   const exchange = {btcExchange: BTC_EXCHANGE.btcExchange};
@@ -80,15 +78,19 @@ const initializeStore = (req, res) => {
     transactions: [],
     pendingTransaction: null 
   };
+  const search = {
+    term: '',
+    dataSource: ['Electronics', 'Clothes', 'Movies', 'Entertainment']
+  };
   if (req.user && req.user.active_cart) {
     return Transaction.where({id: req.user.active_cart})
       .fetch()
       .then(transaction => {
         transactions.pendingTransaction = transaction.toJSON();
-        return Promise.resolve(configureStore({app, exchange, transactions}));
+        return Promise.resolve(configureStore({app, exchange, transactions, search}));
       });
   } else {
-    return Promise.resolve(configureStore({app, exchange, transactions}));
+    return Promise.resolve(configureStore({app, exchange, transactions, search}));
   }
 };
 
@@ -108,3 +110,5 @@ const initializeComponents = (store, url) => {
   return Promise.all(promises)
     .then(data => Promise.resolve(store));
 };
+
+export default router;
