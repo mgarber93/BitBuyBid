@@ -3,7 +3,8 @@ export const searchTypes = {
 };
 
 const initialState = {
-  term: 'I WANT LIONS'
+  term: '',
+  dataSource: [],
 };
 
 export default (state = initialState, {type, payload}) => {

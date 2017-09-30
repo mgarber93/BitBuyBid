@@ -14,27 +14,13 @@ const style = {
     position: 'fixed', 
     left: '25%', 
     margin: '0 auto'
-
   }
-};
-
-const mapStateToProps = (state) => {
-  return {
-    term: state.search.term
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    setSearchTerm,
-    setProducts
-  }, dispatch);
 };
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: []
     };
     this.handleSearch = this.handleSearch.bind(this);
   }
@@ -46,7 +32,6 @@ class Search extends Component {
       this.props.setSearchTerm(text);
       this.props.setProducts(text);
     }
-
   }
 
   render() {
@@ -56,7 +41,7 @@ class Search extends Component {
           <AutoComplete 
             id="searchfield"
             hintText="bitbuy a new..."
-            dataSource={this.state.dataSource}
+            dataSource={this.props.dataSource}
             onKeyPress={this.handleSearch}
             fullWidth={true}
           />
@@ -65,5 +50,19 @@ class Search extends Component {
     );
   }
 }
+
+const mapStateToProps = ({search}) => {
+  return {
+    term: search.term,
+    dataSource: search.dataSource,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    setSearchTerm,
+    setProducts
+  }, dispatch);
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
