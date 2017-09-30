@@ -18,7 +18,6 @@ const config = {
     'react/lib/ExecutionEnvironment': true,
     'react/lib/ReactContext': true,
   },
-
   plugins: [
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('style.css'),
@@ -29,7 +28,6 @@ const config = {
       }
     })
   ],
-
   module: {
     loaders: [
       {
@@ -47,7 +45,6 @@ const config = {
       },
     ],
   },
-
   postcss() {
     return [
       require('autoprefixer')({
@@ -74,6 +71,16 @@ const serverConfig = {
     filename: './server.js',
     publicPath: 'dist/',
   },
+  plugins: [
+    new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin('style.css'),
+    new MinifyPlugin({}, {}),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
+  ],
   module: {
     loaders: [
       {
@@ -91,7 +98,6 @@ const serverConfig = {
       },
     ],
   },
-
   postcss() {
     return [
       require('autoprefixer')({
@@ -104,7 +110,6 @@ const serverConfig = {
       }),
     ];
   },
-
 };
 
 module.exports = [config, serverConfig];
