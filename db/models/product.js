@@ -56,6 +56,9 @@ const defaultImage = '';
  * @todo associate inserted products to category/ tag.
  */
 Product.fromOverstock = (results) => {
+  if (!results) {
+    return Promise.resolve(null);
+  }
   var promiseArray;
   const parsed = JSON.parse(convert.xml2json(results.data,
     {
