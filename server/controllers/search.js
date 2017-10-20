@@ -36,7 +36,7 @@ module.exports.search = (req, res) => {
 
   axios.get(`http://localhost:9200/product/_search?q=tags:${req.body.searchTerm}`)
     .then(({data}) => {
-      if (data.hits.total === 0) {
+      if (data.hits.total < 20) {
         console.log('searching foreign');
         return;
       }
